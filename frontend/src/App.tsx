@@ -1,12 +1,27 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Input } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 import InputComponent from './InputComponent';
 
 function App() {
-  const [searchApiResult, updateSearchApiResult] = useState();
+  const [searchApiResult, updateSearchApiResult] = useState({
+    result: {
+      data: {
+        answer: '',
+      },
+    },
+    error: {},
+    requested: false,
+  });
+  const [apiCallInProgress, updateApiCallInProgress] = useState(false);
+  const { requested, result, error } = searchApiResult;
+
+  useEffect(() => {
+    if (apiCallInProgress) {
+      //TODO: css transitions
+    }
+  });
   return (
     <div
       className="App"
@@ -29,6 +44,7 @@ function App() {
         <h1
           style={{
             fontSize: '30px',
+            marginLeft: '10%',
           }}
         >
           Legal &amp; Compliance Companion
@@ -37,6 +53,7 @@ function App() {
       <div
         style={{
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
           height: '80%',
@@ -45,7 +62,20 @@ function App() {
           paddingBottom: '20%',
         }}
       >
-        <InputComponent updateSearchApiResult={updateSearchApiResult} />
+        <InputComponent
+          updateSearchApiResult={updateSearchApiResult}
+          updateApiCallInProgress={updateApiCallInProgress}
+        />
+        {apiCallInProgress && <Loader style={{ marginTop: '10%' }} active />}
+        {!apiCallInProgress && requested && !error && (
+          <div
+            style={{
+              wordBreak: 'break-all',
+            }}
+          >
+            {result.data.answer}
+          </div>
+        )}
       </div>
     </div>
   );
