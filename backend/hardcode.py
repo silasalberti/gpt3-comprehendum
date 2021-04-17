@@ -12,9 +12,6 @@ def get_lst():
 
     for table in wordDoc.tables:
         for row in table.rows:
-            print('')
-            print('')
-            print('')
             sub = [0,'',0]
             i = 0
             for cell in row.cells:
@@ -24,7 +21,6 @@ def get_lst():
                     if i in [0, 2]:
                         sub[i] = cell.text
                     if cell.text != '':
-                        print(cell.text)
                         i = i + 1
             lst.append(tuple(sub))
 
