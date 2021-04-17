@@ -37,6 +37,8 @@ eight hours a day, with at least one day off in every seven. ILO convention 30 s
 exceed ten hours. Furthermore, ILO convention 1 also states that where overtime work is allowed and required, 
 the maximum number of additional hours must be fixed, and overtime must be compensated at a rate of 
 no less than 25% above the normal rate of pay.
+
+11.3.6	If and when Supplier fails to meet any agreed Delivery Date, except for reasons of Force Majeure, Supplier shall pay to Customer the amount of EUR 500 (five hundred Euros) for each set of Documentation delayed and 1% (one percent) of the sum of the purchase price of the Agreed Order and of the purchase prices of the Products and/or Services which cannot be used because of the delay per calendar day of delay, up to a maximum amount per event of 30% (thirty percent) of such price. The payment of any of these amounts or parts thereof shall not discharge Supplier of its obligations to supply the Products and/or Services or of any other liabilities or obligations under this Agreement and/or any Agreed Order and/or by law. Customer shall not be required to reserve its rights under this Article 11.3.7, in particular, when the Products or Services are received or accepted.
 """
 examples = [
     [
@@ -50,6 +52,10 @@ examples = [
     [
         "What risks does Siemens face when the decent working hour standards are not met?",
         "Siemens risks being faced with operational, financial, legal and reputational risks."
+    ],
+    [
+        "What shall the Supplier pay in case of not meeting the agreed Delivery Date?",
+        "EUR 500 (five hundred Euros) for each set of Documentation delayed and 1% (one percent) of the sum of the purchase price of the Agreed Order and of the purchase prices of the Products and/or Services which cannot be used because of the delay per calendar day of delay, up to a maximum amount per event of 30% (thirty percent) of such price."
     ],
 ]
 
