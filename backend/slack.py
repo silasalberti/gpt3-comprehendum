@@ -1,22 +1,34 @@
 from fastapi import Request
-from index import app
+from index import app, ask_question
 from pydantic import BaseModel
+import requests
 
-class SlackQuestion(BaseModel):
-    # token: str
-    # team_id: str
-    # team_domain: str
-    # enterprise_id: str
-    # enterprise_name: str
-    # channel_id: str
-    # channel_name: str
-    # user_id: str
-    # user_name: str
-    command: str
-    text: str
-    # response_url: str
-    # trigger_id: str
-    # api_app_id: str
+import logging
+from slackers.hooks import commands
+
+log = logging.getLogger(__name__)
+
+@commands.on("comprehendum")
+def handle_mention(payload):
+    print(payload["response_url"])
+
+    requests.post(payload["response_url"], json={
+        "text": ask_question(payload["text"])
+    })
+
+    return {
+        "blocks": [
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": f"Answer:" 
+                }
+            }
+        ]
+    }
+
+
 
 @app.post("/api/questionFromSlack")
 async def question_by_slack(request: Request):
@@ -31,7 +43,7 @@ async def question_by_slack(request: Request):
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": f"*Your Question:* {question}"
+                        "text": f"Answer:* {ask_question(question)}"
                     }
                 }
             ]
