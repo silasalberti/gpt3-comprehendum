@@ -17,7 +17,7 @@ header_auth = f"Bearer {API_KEY}"
 header_contenttype = "application/json"
 
 search_model = "ada"
-completion_model = "curie"
+completion_model = "davinci"
 
 examples_context = """6.6.1.3	Decent Working Time
 
@@ -57,6 +57,10 @@ examples = [
         "What shall the Supplier pay in case of not meeting the agreed Delivery Date?",
         "EUR 500 (five hundred Euros) for each set of Documentation delayed and 1% (one percent) of the sum of the purchase price of the Agreed Order and of the purchase prices of the Products and/or Services which cannot be used because of the delay per calendar day of delay, up to a maximum amount per event of 30% (thirty percent) of such price."
     ],
+    [
+        "What is Siemens’ minimum volume commitment?",
+        "I don't know the answer to that question."
+    ]
 ]
 
 
