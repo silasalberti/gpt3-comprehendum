@@ -106,6 +106,9 @@ def get_sentences(question, str=string):
 
     return [x[1] for x in match_scores[:20] if len(x[1]) < 1500]
 
+def get_bcg(question):
+    return create_string('BCGs.txt')
+
 '''
 questions = ['What is bribery?', 'What are the Supplier’s obligation in case of late delivery?', 'What are the Supplier’s obligation in case of not meeting the delivery date?',
 'Where is the seat of arbitration?', 'Which law does apply?', 'Is a earthquake a force majeure event?', 
