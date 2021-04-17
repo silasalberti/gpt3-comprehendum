@@ -33,9 +33,11 @@ async def shutdown():
 
 @app.post("/api/question")
 async def question(request: Request):
-    #TODO: prepare and make gpt-3 query here
     request_body = await request.json()
-    #TODO: deal with request_body.query (The question)
+    # TODO: Get keywords from request_body.query (The question) using stop words dict
+    # TODO: Look for relevant paragraphs in paragraphs array
+    # TODO: Send request with appropriate token size (10000?) to gpt-3 to get an answer
+    # TODO: return answer
     result = jsonable_encoder({"answer": "a"*2000})
     
     #dummy wait to test frontend animations
