@@ -1,3 +1,5 @@
+from typing import List
+
 import requests
 from dotenv import load_dotenv
 import os
@@ -18,8 +20,8 @@ search_model = "ada"
 completion_model = "curie"
 
 
-def get_answer(question, paragraphs):
-    question = "Is a payment under duress deemed an act of corruption?"
+def get_answer(question: str, paragraphs: List[str]):
+    # question = "Is a payment under duress deemed an act of corruption?"
 
     response = requests.post(
         answers_url,
@@ -28,9 +30,7 @@ def get_answer(question, paragraphs):
             "Content-Type": header_contenttype
         },
         json={
-            "documents": [
-                "All Siemens",
-            ],
+            "documents": paragraphs,
             "question": question,
             "search_model": search_model,
             "model": completion_model,
@@ -38,7 +38,7 @@ def get_answer(question, paragraphs):
             "examples": [["Who does a facilitation payment go to?", "Low-ranking government officials."]],
             "max_tokens": 40,
             "stop": ["\n", "<|endoftext|>"],
-            "temperature": 1
+            "temperature": 0.2
         }
     )
-    return response.json()['answers']
+    return response.json()['answers'][0]
