@@ -26,6 +26,7 @@ def get_lst():
 
     return lst
 
+
 def str_in_lst(question, lst):
     for i in lst:
         if question in i[0]:
@@ -34,3 +35,8 @@ def str_in_lst(question, lst):
             return i[2]
     else:
         return False
+
+
+    
+    
+print(get_lst())
