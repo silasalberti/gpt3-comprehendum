@@ -1,5 +1,6 @@
 from multi_rake import Rake
 
+
 def create_absatze(file_name):
     #params:
     #file_name: string in format file.txt
