@@ -50,6 +50,12 @@ async def question(q: str):
     # TODO: Look for relevant paragraphs in paragraphs array
     # TODO: Send request with appropriate token size (10000?) to gpt-3 to get an answer
     paragraphs = get_sentences(q)
+
+    for i in paragraphs:
+        print(i)
+        print('')
+        print('')
+
     answer = get_answer(q, paragraphs)
     # TODO: return answer
     print(answer)

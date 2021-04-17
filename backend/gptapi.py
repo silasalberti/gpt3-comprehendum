@@ -70,9 +70,9 @@ def get_answer(question: str, paragraphs: List[str]):
             "model": completion_model,
             "examples_context": examples_context,
             "examples": examples,
-            "max_tokens": 40,
+            "max_tokens": 200,
             "stop": ["\n", "<|endoftext|>"],
-            "temperature": 0.2
+            "temperature": 0
         }
     )
     return response.json()['answers'][0]

@@ -41,6 +41,8 @@ def get_keywords(question):
     keywords = [_[0] for _ in keywords]
     if keywords == []:
         keywords = question.split(' ')
+        for i in [',', '.', '!', '?']:
+            keywords = [j.replace(i,'') for j in keywords]
     return keywords
 
 import pickle
@@ -86,10 +88,12 @@ def get_sentences(question, str=string):
     List_1 = [i.split(' ') for i in key_words]
     key_words = list(set(list(itertools.chain(*List_1))))
 
-    for i in tokenize.sent_tokenize(string):
+    sentences = tokenize.sent_tokenize(string)
+    sentences = [' '] + [' '] + sentences + [' '] + [' ']
+    for j, i in enumerate(sentences):
         for word in key_words:
             if word in i.lower():
-                matches.append(i)
+                matches.append(sentences[j-2]+sentences[j-1]+i + sentences[j+1] + sentences[j+2])
                 break
 
     match_scores = []
@@ -119,6 +123,21 @@ for question in questions:
         print('')
         """
 
+#Not working:
+#What is AREA
+#What are the risks of collective action initiatives?
+#What is Siemens minimum volume commitment?
+
+#Working:
+#Is Siemens allowed to copy the Documentation?
+#When shall the Supplier confirm the receipt of any Purchase Order?
+#How long is the lead time for standard Products?
+
+#Correct, but not detailed enough
+#Can the Supplier reject a Purchase Order?
+
+#Pending:
+#What are the Supplier’s obligation in case of late delivery?
 
 
 
