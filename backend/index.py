@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from time import sleep
 
 from gptapi import get_answer
+from key_word_search import get_sentences
 
 # set permitted cors origins
 origins = [
@@ -49,7 +50,8 @@ async def question(q: str):
     # TODO: Get keywords from request_body.query (The question) using stop words dict
     # TODO: Look for relevant paragraphs in paragraphs array
     # TODO: Send request with appropriate token size (10000?) to gpt-3 to get an answer
-    answer = get_answer(q, test_paragraphs)
+    paragraphs = get_sentences(q)
+    answer = get_answer(q, paragraphs)
     # TODO: return answer
     print(answer)
     result = jsonable_encoder({"answer": answer})
