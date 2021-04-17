@@ -10,23 +10,44 @@ log = logging.getLogger(__name__)
 
 @commands.on("comprehendum")
 def handle_mention(payload):
-    print(payload["response_url"])
+    print(payload["channel_id"])
 
-    requests.post(payload["response_url"], json={
-        "text": ask_question(payload["text"])
-    })
+    channel_id = payload["channel_id"]
 
-    return {
-        "blocks": [
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": f"Answer:" 
+    if channel_id == "C01UFQDJ22H":
+        question = payload["text"]
+        result = ask_question(question)
+
+        requests.post(payload["response_url"], json= {
+            "blocks": [
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": f"*Question:* {question}" 
+                    }
+                },
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": f"*Answer:* {result}" 
+                    }
                 }
-            }
-        ]
-    }
+            ]
+        })
+    else:
+        requests.post(payload["response_url"], json= {
+            "blocks": [
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": f"Not allowed in this channel" 
+                    }
+                },
+            ]
+        })
 
 
 

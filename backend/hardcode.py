@@ -27,11 +27,11 @@ def get_lst():
     return lst
 
 
-def str_in_lst(question, lst):
+def str_in_lst(quest, lst):
     for i in lst:
-        if question in i[0]:
+        if quest in i[0]:
             return i[2]
-        elif question in str(i[1]):
+        elif quest in str(i[1]):
             return i[2]
     else:
         return False
@@ -39,4 +39,4 @@ def str_in_lst(question, lst):
 
     
     
-print(get_lst())
+get_lst()

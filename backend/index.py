@@ -35,7 +35,8 @@ def ask_question(q: str):
 
     lst = get_lst()
 
-    answer = str_in_lst(question, lst)
+    answer = str_in_lst(q, lst)
+    #answer = False
 
     if not answer:
         paragraphs = get_sentences(q)
@@ -61,9 +62,8 @@ def ask_question(q: str):
             print("Answer not sent.")
             answer = "I do not know the answer to this question."
 
-    result = jsonable_encoder({"answer": answer})
 
-    return JSONResponse(content=result)
+    return answer
 
 import slack
 
@@ -89,7 +89,7 @@ test_paragraphs = [
 
 import signal
 
-TIMEOUT = 0  # number of seconds your want for timeout
+TIMEOUT = 2  # number of seconds your want for timeout
 
 
 def interrupted():
@@ -110,5 +110,5 @@ def sleep_input(q):
 
 @app.get("/api/question")
 async def question(q: str):
-    return ask_question(q)
+    return JSONResponse(content=ask_question(q))
 
