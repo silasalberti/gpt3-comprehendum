@@ -1,5 +1,6 @@
 from multi_rake import Rake
 
+
 def create_absatze(file_name):
     #params:
     #file_name: string in format file.txt
@@ -78,7 +79,9 @@ def create_string(file_name):
     return string
 
 
-string = create_string('Handbook.txt') + create_string('BCGs.txt') + create_string('Sample_Contract.txt')
+string = create_string('Handbook.txt') + \
+         create_string('BCGs.txt') + \
+         create_string('Sample_Contract.txt')
 
 def get_sentences(question, str=string):
     key_words = get_keywords(question)
