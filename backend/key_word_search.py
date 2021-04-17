@@ -48,6 +48,9 @@ def get_list(file_name):
     
     return b
 
+
+import itertools
+
 def get_absatze(question, absatze):
     key_words = get_keywords(question)
     dic = {}
@@ -55,6 +58,19 @@ def get_absatze(question, absatze):
         lst = find_word(absatze, word)
         dic[word] = [(j,absatze[i]) for i, j in enumerate(lst) if j !=0]
         #dic[word] = [(j,'test') for i, j in enumerate(lst) if j !=0]
+    
+    length = 0
+    for key in dic.keys():
+        for i in dic[key]:
+            length = length + len(i[1])
+
+    if length == 0:
+        List_1 = [i.split(' ') for i in key_words]
+        key_words = list(itertools.chain(*List_1))
+        dic = {}
+        for word in key_words:
+            lst = find_word(absatze, word)
+            dic[word] = [(j,absatze[i]) for i, j in enumerate(lst) if j !=0]
     return dic
 
 
@@ -78,6 +94,8 @@ questions = ['What is bribery?', 'What are the Supplier’s obligation in case o
 'What does the global key account management do?', 'Are gifts of money allowed?', 'What is the Compliance Review Board? What is CRB?',
 'Who needs to participate in Compliance Review Board (CRB)?', '"Where can I report compliance cases? Where can I report compliance violations?"']
 
+#questions = ['What are the Supplier’s obligation in case of late delivery?'] 
+
 for question in questions:
     print(question)
     dic = get_absatze(question, absatze)
@@ -85,4 +103,5 @@ for question in questions:
         length = 0
         for i in dic[key]:
             length = length + len(i[1])
-        print(length)
+    
+    print(length)
