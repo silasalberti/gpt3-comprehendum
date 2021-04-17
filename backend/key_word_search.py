@@ -26,10 +26,11 @@ def find_word(absatze, word):
     #absatze: a list of strings, where each string represents one absatz
     #word: lowercase string with the word to search for
 
-    #returns: a list of ints where count[i] is how often the word appears in absatze[i]
+    #returns: a list of touple, with (index, how often it appears); list is orderd with the highes number of 
+    #counts first
     counts = []
-    for i in absatze:
-        counts.append(i.lower().count(word))
+    for index,i in enumerate(absatze):
+        counts.append((index, i.lower().count(word)))
     return counts 
 
 def get_keywords(question):
@@ -48,21 +49,25 @@ def get_list(file_name):
     
     return b
 
-
-import itertools
-
-def get_absatze(question, absatze):
-    key_words = get_keywords(question)
-    dic = {}
-    for word in key_words:
-        lst = find_word(absatze, word)
-        dic[word] = [(j,absatze[i]) for i, j in enumerate(lst) if j !=0]
-        #dic[word] = [(j,'test') for i, j in enumerate(lst) if j !=0]
-    
+def get_length(dic):
     length = 0
     for key in dic.keys():
         for i in dic[key]:
             length = length + len(i[1])
+    return length
+
+
+import itertools
+def get_absatze(question, absatze):
+    key_words = get_keywords(question)
+    dic = {}
+    for word in key_words:
+        if length(dic) <= 4000:
+            lst = find_word(absatze, word)
+            dic[word] = [(j,absatze[i]) for i, j in enumerate(lst) if j !=0]
+            print([(j,'test') for i, j in enumerate(lst) if j !=0])
+    
+    length = get_length(dic)
 
     if length == 0:
         List_1 = [i.split(' ') for i in key_words]
@@ -71,20 +76,25 @@ def get_absatze(question, absatze):
         for word in key_words:
             lst = find_word(absatze, word)
             dic[word] = [(j,absatze[i]) for i, j in enumerate(lst) if j !=0]
+    
+    print(dic)
+    #while get_length(dic) >= 4000:
+
+
     return dic
 
 
-absatze = create_absatze('Handbook.txt')
+absatze1 = create_absatze('Handbook.txt')
 
-safe_list('Handbook_absatz.txt',absatze)
+safe_list('Handbook_absatz.txt',absatze1)
 
-absatze = absatze + create_absatze('Sample_Contract.txt')
+absatze2 = create_absatze('Sample_Contract.txt')
 
-safe_list('Sample_Contract_absatz.txt',absatze)
+safe_list('Sample_Contract_absatz.txt',absatze2)
 
-absatze = absatze + create_absatze('BCGs.txt')
+absatze3 = create_absatze('BCGs.txt')
 
-safe_list('BCGs_absatz.txt',absatze)
+safe_list('BCGs_absatz.txt',absatze3)
 
 
 absatze = get_list('Handbook_absatz.txt') + get_list('BCGs_absatz.txt') + get_list('Sample_Contract_absatz.txt')
@@ -95,7 +105,7 @@ questions = ['What is bribery?', 'What are the Supplier’s obligation in case o
 'Who needs to participate in Compliance Review Board (CRB)?', '"Where can I report compliance cases? Where can I report compliance violations?"']
 
 #questions = ['What are the Supplier’s obligation in case of late delivery?'] 
-
+'''
 for question in questions:
     print(question)
     dic = get_absatze(question, absatze)
@@ -104,4 +114,4 @@ for question in questions:
         for i in dic[key]:
             length = length + len(i[1])
     
-    print(length)
+    print(length)'''
