@@ -67,7 +67,18 @@ from nltk import tokenize
 import itertools
 import re
 
-def get_sentences(question, string):
+def create_string(file_name):
+    file = open(file_name, 'r')
+    read_lines = file.readlines()
+    string = '' 
+    for line in read_lines:
+        string = string + line
+    return string
+
+
+string = create_string('Handbook.txt') + create_string('BCGs.txt') + create_string('Sample_Contract.txt')
+
+def get_sentences(question, str=string):
     key_words = get_keywords(question)
     print(key_words)
     matches = []
@@ -87,17 +98,9 @@ def get_sentences(question, string):
         match_scores.append((i/len(key_words), sentence))
 
     match_scores = sorted(match_scores, key=lambda x: (x[0],-len(x[1])), reverse=True)
-    return match_scores
+    #paragraphs = [x[1] for x in match_scores]
 
-def create_string(file_name):
-    file = open(file_name, 'r')
-    read_lines = file.readlines()
-    string = '' 
-    for line in read_lines:
-        string = string + line
-    return string
-
-string = create_string('Handbook.txt') + create_string('BCGs.txt') + create_string('Sample_Contract.txt')
+    return [x[1] for x in match_scores[:20] if len(x[1]) < 1500]
 
 '''
 questions = ['What is bribery?', 'What are the Supplier’s obligation in case of late delivery?', 'What are the Supplier’s obligation in case of not meeting the delivery date?',
@@ -106,6 +109,7 @@ questions = ['What is bribery?', 'What are the Supplier’s obligation in case o
 'Who needs to participate in Compliance Review Board (CRB)?', 'Where can I report compliance cases? Where can I report compliance violations?']
 '''
 
+"""
 questions = ['What does the global key account management do?']
 for question in questions:
     j = get_sentences(question, string)[:20]
@@ -113,6 +117,7 @@ for question in questions:
         print(i)
         print('')
         print('')
+        """
 
 
 
