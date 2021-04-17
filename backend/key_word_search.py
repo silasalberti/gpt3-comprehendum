@@ -31,7 +31,7 @@ def find_word(absatze, word):
     counts = []
     for index,i in enumerate(absatze):
         counts.append((index, i.lower().count(word)))
-    return counts 
+    return sorted(counts, key=lambda x: x[1], reverse=True) 
 
 def get_keywords(question):
     rake = Rake()
@@ -61,9 +61,16 @@ import itertools
 def get_absatze(question, absatze):
     key_words = get_keywords(question)
     dic = {}
+
+    #we have to include at least the most relevant absatz
+    #of every word
+
+    count = 0
+    while length(dic) <= 4000:
+        
     for word in key_words:
+        lst = find_word(absatze, word)
         if length(dic) <= 4000:
-            lst = find_word(absatze, word)
             dic[word] = [(j,absatze[i]) for i, j in enumerate(lst) if j !=0]
             print([(j,'test') for i, j in enumerate(lst) if j !=0])
     
@@ -105,7 +112,7 @@ questions = ['What is bribery?', 'What are the Supplier’s obligation in case o
 'Who needs to participate in Compliance Review Board (CRB)?', '"Where can I report compliance cases? Where can I report compliance violations?"']
 
 #questions = ['What are the Supplier’s obligation in case of late delivery?'] 
-'''
+
 for question in questions:
     print(question)
     dic = get_absatze(question, absatze)
@@ -114,4 +121,4 @@ for question in questions:
         for i in dic[key]:
             length = length + len(i[1])
     
-    print(length)'''
+    print(length)
