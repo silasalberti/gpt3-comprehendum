@@ -7,6 +7,7 @@ from time import sleep
 from gptapi import get_answer
 from key_word_search import get_sentences
 
+
 # set permitted cors origins
 origins = [
     "*"
@@ -21,6 +22,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+import slack
 
 
 @app.on_event("startup")
