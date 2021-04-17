@@ -6,7 +6,6 @@ from time import sleep
 
 from gptapi import get_answer
 from key_word_search import get_sentences
-from key_word_search import get_bcg
 
 # set permitted cors origins
 origins = [
@@ -51,14 +50,13 @@ async def question(q: str):
     # TODO: Get keywords from request_body.query (The question) using stop words dict
     # TODO: Look for relevant paragraphs in paragraphs array
     # TODO: Send request with appropriate token size (10000?) to gpt-3 to get an answer
-    #paragraphs = get_sentences(q)
-    '''
+    paragraphs = get_sentences(q)
+    
     for i in paragraphs:
         print(i)
         print('')
-        print('')'''
+        print('')
 
-    paragraphs = [get_bcg(q)]
     answer = get_answer(q, paragraphs)
     # TODO: return answer
     print(answer)
