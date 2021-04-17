@@ -15,10 +15,9 @@ def create_absatze(file_name):
     absatze = []
     last_absatz_index = 0
     for index, line in enumerate(lines):
-        if line == '\n':
-            if lines[index-1].endswith('.\n'):
-                absatze.append(lines[last_absatz_index:index])
-                last_absatz_index = index
+        if lines[index].endswith('.\n'):
+            absatze.append(lines[last_absatz_index:index])
+            last_absatz_index = index
     return [''.join(_) for _ in absatze]
 
 def find_word(absatze, word):
@@ -35,8 +34,14 @@ def find_word(absatze, word):
 
 def get_keywords(question):
     rake = Rake()
+    print(question)
     keywords = rake.apply(question)
-    return [_[0] for _ in keywords]
+    #print(keywords)
+    #print([_[0] for _ in keywords])
+    keywords = [_[0] for _ in keywords]
+    if keywords == []:
+        keywords = question.split(' ')
+    return keywords
 
 import pickle
 def safe_list(file_name, lst):
@@ -57,6 +62,61 @@ def get_length(dic):
     return length
 
 
+from nltk import tokenize
+
+import itertools
+import re
+
+def get_sentences(question, string):
+    key_words = get_keywords(question)
+    print(key_words)
+    matches = []
+
+    List_1 = [i.split(' ') for i in key_words]
+    key_words = list(set(list(itertools.chain(*List_1))))
+
+    for i in tokenize.sent_tokenize(string):
+        for word in key_words:
+            if word in i.lower():
+                matches.append(i)
+                break
+
+    match_scores = []
+    for index,sentence in enumerate(matches):
+        i = len([x for x in key_words if x in sentence.lower()])
+        match_scores.append((i/len(key_words), sentence))
+
+    match_scores = sorted(match_scores, key=lambda x: (x[0],-len(x[1])), reverse=True)
+    return match_scores
+
+def create_string(file_name):
+    file = open(file_name, 'r')
+    read_lines = file.readlines()
+    string = '' 
+    for line in read_lines:
+        string = string + line
+    return string
+
+string = create_string('Handbook.txt') + create_string('BCGs.txt') + create_string('Sample_Contract.txt')
+
+'''
+questions = ['What is bribery?', 'What are the Supplier’s obligation in case of late delivery?', 'What are the Supplier’s obligation in case of not meeting the delivery date?',
+'Where is the seat of arbitration?', 'Which law does apply?', 'Is a earthquake a force majeure event?', 
+'What does the global key account management do?', 'Are gifts of money allowed?', 'What is the Compliance Review Board? What is CRB?',
+'Who needs to participate in Compliance Review Board (CRB)?', 'Where can I report compliance cases? Where can I report compliance violations?']
+'''
+
+questions = ['What does the global key account management do?']
+for question in questions:
+    j = get_sentences(question, string)[:20]
+    for i in j:
+        print(i)
+        print('')
+        print('')
+
+
+
+
 import itertools
 def get_absatze(question, absatze):
     key_words = get_keywords(question)
@@ -66,8 +126,7 @@ def get_absatze(question, absatze):
     #of every word
 
     count = 0
-    while length(dic) <= 4000:
-        
+
     for word in key_words:
         lst = find_word(absatze, word)
         if length(dic) <= 4000:
@@ -90,6 +149,9 @@ def get_absatze(question, absatze):
 
     return dic
 
+#def get_absatze(question, absatze):
+
+'''
 
 absatze1 = create_absatze('Handbook.txt')
 
@@ -105,6 +167,8 @@ safe_list('BCGs_absatz.txt',absatze3)
 
 
 absatze = get_list('Handbook_absatz.txt') + get_list('BCGs_absatz.txt') + get_list('Sample_Contract_absatz.txt')
+print(len(absatze[0]))
+
 
 questions = ['What is bribery?', 'What are the Supplier’s obligation in case of late delivery?', 'What are the Supplier’s obligation in case of not meeting the delivery date?',
 'Where is the seat of arbitration?', 'Which law does apply?', 'Is a earthquake a force majeure event?', 
@@ -122,3 +186,5 @@ for question in questions:
             length = length + len(i[1])
     
     print(length)
+
+'''

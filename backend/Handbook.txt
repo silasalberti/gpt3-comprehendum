@@ -5,7 +5,8 @@ This Compliance Handbook is a "one-stop-shop" for binding Compliance rules and r
 additional information under the roof of our Business Conduct Guidelines, Circular No. 226 "Global Compliance" 
 and the Compliance Operating Model . It is applicable for all Siemens employees and accessible online, offline as 
 well as mobile. The Compliance Handbook offers a search function allowing information to be found easily and is 
-furthermore clearly structured in three parts:
+furthermore clearly structured in three parts:.
+
 ?	Part 1: Compliance activity fields
     relates to the different activity fields that the Compliance Organization covers: Anti-Corruption, Antitrust, 
 Anti-Money-Laundering, Data Privacy, Human Rights, Export Control and Collective Action.
@@ -17,12 +18,14 @@ the integration of compliance aspects into Mergers & Acquisitions is covered.
     addresses the employees of the Compliance Organisation. It covers the mainly Compliance internal tasks 
 of Communication and Training as well as Risk Management and Reviews and our detective and responsive 
 processes of Case Handling, Discipline and Remediation.
+
 Thanks a lot to the all the stakeholders responsible for the content of the different chapters, to the editors as well 
 as Ines Zins and Peter Lohse for putting together this impressive collection of our rules, regulations and 
 explanations.
-Best regards,
+Best regards
 Martina Maier
-Chief Compliance Officer
+Chief Compliance Officer.
+
 
 
 
@@ -37,12 +40,14 @@ these risks - and at the same time protect against damage to the reputation and 
 Siemens that could result from compliance violations within the company.
 Initially, the legislation of the European Union, for example, on competition law, data protection or export 
 controls, is decisive for compliance.
+
 Important national laws such as the U.S. Foreign Corrupt Practices Act and the Bribery Act of the United 
 Kingdom, for example, prohibit corruption and bribery. Both also affect business activities outside of both 
 countries to a considerable extent. In addition, there are numerous other national laws around the world 
 prohibiting corruption and bribery and on other topics such as the prohibition of money laundering and the 
 financing of terrorism, violations of competition law, data protection and export controls, as well as official 
 regulations, particularly on export controls.
+
 These laws and regulations are subject to constant change, especially with regard to export controls. 
 Overall, a tendency towards increased regulation can be observed. For example, in important markets of 
 our company, the legal regulations, for example on the prohibition of corruption, have been tightened and 
@@ -52,10 +57,11 @@ such as the U.S. Department of Justice, the French Agence Francaise Anticorrupti
 Fraud Office (SFO) of the United Kingdom - play an important role in this regard, but at the same time they 
 provide companies with essential guidance on how to adequately structure their compliance with regard to 
 the fulfillment of legal due diligence requirements.
+
 Finally, there are the agreements and recommendations of international organizations such as the UN 
 Convention against Corruption and the OECD Convention on the Prohibition of Bribery of Foreign Public 
 Officials, as well as international standards such as DIN ISO 37001 or DIN ISO 19600.
-Regulatory Landscape
+Regulatory Landscape.
 
 The Compliance Organization (LC CO) has governance responsibility for the implementation of the 
 Siemens Compliance System in the Company Units. It is responsible for the legal risk areas of anti- 
@@ -73,6 +79,7 @@ The following regulations contain "What" is expected of employees in the context
 *	The Siemens Business Conduct Guidelines (BCG) set forth the fundamental principles and rules 
 governing how we act within the Company Units and in relation to our customers, external partners 
 and the general public.
+
 *	The Siemens Circular (SC 226) sets forth the obligations for all employees of Siemens and 
 respective controls to ensure the implementation of the Siemens Compliance System.
 
