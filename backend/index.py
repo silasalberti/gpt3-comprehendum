@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from time import sleep
 #set permitted cors origins
 origins = [
-    "http://localhost:3000"
+    "*"
 ]
 
 app = FastAPI()
@@ -31,9 +31,10 @@ async def shutdown():
 
 # see here: https://fastapi.tiangolo.com/advanced/response-directly/
 
-@app.post("/api/question")
-async def question(request: Request):
-    request_body = await request.json()
+@app.get("/api/question")
+async def question(question: str):
+    # request_body = await request.json()
+    print(question)
     # TODO: Get keywords from request_body.query (The question) using stop words dict
     # TODO: Look for relevant paragraphs in paragraphs array
     # TODO: Send request with appropriate token size (10000?) to gpt-3 to get an answer
