@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+
 import 'semantic-ui-css/semantic.min.css';
-import { Loader } from 'semantic-ui-react';
+import { Loader, Container } from 'semantic-ui-react';
 import InputComponent from './InputComponent';
 
 function App() {
@@ -33,18 +33,28 @@ function App() {
       <div
         className="header"
         style={{
-          height: '20%',
+          height: '15%',
           backgroundColor: '#B0BEA9',
           color: 'white',
           display: 'flex',
-          alignItems: 'center',
+          alignItems: 'flex-end',
           justifyContent: 'flex-start',
+          paddingLeft: '10%',
+          paddingBottom: '25px',
+          gap: '20px',
         }}
       >
+        <img
+          src="Siemens-logo.svg"
+          style={{
+            width: '200px',
+          }}
+        />
         <h1
           style={{
-            fontSize: '30px',
-            marginLeft: '10%',
+            fontSize: '40px',
+            fontFamily: 'Lato',
+            fontWeight: 300,
           }}
         >
           Legal &amp; Compliance Companion
@@ -68,13 +78,14 @@ function App() {
         />
         {apiCallInProgress && <Loader style={{ marginTop: '10%' }} active />}
         {!apiCallInProgress && requested && !error && (
-          <div
+          <Container
+            text
             style={{
               wordBreak: 'break-all',
             }}
           >
             {result.data.answer}
-          </div>
+          </Container>
         )}
       </div>
     </div>
