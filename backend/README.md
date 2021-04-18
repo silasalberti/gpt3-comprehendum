@@ -16,3 +16,10 @@ Start backend server (development):
 ```
 uvicorn index:app --host 0.0.0.0 --port 5000 --log-level debug --reload
 ```
+
+# Build and run dockerfile
+
+```
+docker build -t comprehendum . 
+docker run comprehendum (-d for detached mode)
+```
