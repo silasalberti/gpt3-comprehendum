@@ -8,7 +8,7 @@ from slackers.server import router
 from gptapi import get_answer
 from key_word_search import get_sentences
 
-from hardcode import *
+from intelligent_parse import *
 
 # set permitted cors origins
 origins = [
@@ -89,7 +89,7 @@ test_paragraphs = [
 
 import signal
 
-TIMEOUT = 2  # number of seconds your want for timeout
+TIMEOUT = 1  # number of seconds your want for timeout
 
 
 def interrupted():
