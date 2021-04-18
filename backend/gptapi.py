@@ -17,7 +17,7 @@ header_auth = f"Bearer {API_KEY}"
 header_contenttype = "application/json"
 
 search_model = "ada"
-completion_model = "davinci"
+completion_model = "curie"
 
 examples_context = """6.6.1.3	Decent Working Time
 
@@ -65,8 +65,6 @@ examples = [
 
 
 def get_answer(question: str, paragraphs: List[str]):
-    # question = "Is a payment under duress deemed an act of corruption?"
-
     response = requests.post(
         answers_url,
         headers={
@@ -86,3 +84,26 @@ def get_answer(question: str, paragraphs: List[str]):
         }
     )
     return response.json()['answers'][0]
+
+
+compl_model = "davinci"
+completion_url = f"https://api.openai.com/v1/engines/{compl_model}/completions"
+
+
+def get_completion(question: str):
+    response = requests.post(
+        completion_url,
+        headers={
+            "Authorization": header_auth,
+            "Content-Type": header_contenttype
+        },
+        json={
+            "prompt": """
+            What is the german legal warranty period?
+            """,
+            "max_tokens": 50,
+            "temperature": 0.1,
+            "n": 1,
+        }
+    )
+    return response.json()['choices'][0]['text']
