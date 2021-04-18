@@ -1,1 +1,2 @@
-# gpt3-makeathon
+# GPT-3 Legal & Compliance Slackbot
+
