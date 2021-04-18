@@ -1,5 +1,7 @@
 # GPT-3 Legal & Compliance Slackbot
 
+See our pitch deck [here](Comprehendum.pdf).
+
 ## Just use the `Comprehendum` slash command in Slack
 <img width="409" alt="Bildschirmfoto 2021-04-18 um 13 24 42" src="https://user-images.githubusercontent.com/19505672/115143960-550ef600-a04a-11eb-8ce3-23002cba2aa5.png">
 
